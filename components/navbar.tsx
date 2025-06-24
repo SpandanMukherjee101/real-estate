@@ -7,8 +7,8 @@ export const Navbar = () => {
             <div className="flex justify-between items-center w-full">
                 <div className="text-white w-[15vw] lg:mx-8 text-4xl font-medium">Propelo</div>
                 <div className="sm:space-x-6 w-full flex justify-end items-center mt-0">
-                    <div className=" hidden sm:inline-block">
-                        <Button textColor="white">Explore Properties</Button>
+                    <div className=" hidden sm:inline-block  mr-[8vw]">
+                        <Button textColor="white" fill={true}>Explore Properties</Button>
                     </div>
                     <Menu></Menu>
                 </div>

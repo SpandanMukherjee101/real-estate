@@ -1,72 +1,16 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Button from './button';
+import Cards from "./cards";
+import Data from '../data/property.json';
+import { HrExp } from '@/hooks/hr_expand';
+import { FadeIn } from '@/hooks/fade_in';
 
-gsap.registerPlugin(ScrollTrigger);
 
 const Main = () => {
-    const refs = useRef<HTMLElement[]>([]);
+    const setRef = FadeIn()
 
-    const setRef = (el: HTMLElement | null) => {
-        if (el && !refs.current.includes(el)) {
-            refs.current.push(el);
-        }
-    };
-
-    const refsHr = useRef<HTMLElement[]>([]);
-
-    const setRefHr = (el: HTMLElement | null) => {
-        if (el && !refsHr.current.includes(el)) {
-            refsHr.current.push(el);
-        }
-    };
-
-    useEffect(() => {
-        refs.current.forEach((el) => {
-            gsap.fromTo(
-                el,
-                { opacity: 0, y: 50, scale: 0.95 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 1,
-                    delay: 0.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none',
-                    },
-                }
-            );
-        });
-
-        refsHr.current.forEach((el) => {
-            gsap.fromTo(
-                el,
-                { width: '0%' },
-                {
-                    width: '100%',
-                    duration: 1,
-                    delay: 0.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none',
-                    },
-                }
-            );
-        });
-
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
-    }, []);
+    const setRefHr = HrExp();
 
     return (
         <>
@@ -101,12 +45,15 @@ const Main = () => {
             </div>
             <div className='text-black flex flex-col sm:flex-row justify-center gap-4 py-8 h-[60vh] sm:h-[30vh]'>
                 <div className={`flex sm:flex-row flex-col items-start sm:items-center justify-between w-[98vw] h-[20vh] sm:h-[15vh] overflow-x-hidden`}>
-                    <h1 ref={setRef} className={`w-[98vw] sm:w-5/12 text-5xl`}>Featured properties</h1>
-                    <div ref={setRefHr} className={`hidden sm:inline-flex`}>
-                        <hr className={`w-full h-0.5 -translate-x-2 bg-black border-none`} />
+                    <h1 ref={setRef} className={`w-full sm:w-[40vw] text-5xl`}>Featured properties</h1>
+                    <div ref={setRefHr} className={`hidden w-[55vw] justify-start sm:flex`}>
+                        <hr className={`w-full h-0.5 -translate-x-1 bg-black border-none`} />
                     </div>
-                    <div ref={setRef} className='w-[30vw] sm:w-[15vw]'><Button textColor='black'>View all</Button></div>
+                    <div ref={setRef} className='w-[30vw] sm:w-[15vw]'><Button textColor='black' fill={true}>View all</Button></div>
                 </div>
+            </div>
+            <div className='h-[80vh] sm:h-[70vh] overflow-hidden'>
+                <Cards images={Data} />
             </div>
         </>
     );
