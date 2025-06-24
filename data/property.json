@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Property 1",
+        "type": "House",
+        "address": "123 Main St, Springfield",
+        "path": "/a.jpg"
+    },
+    {
+        "title": "Property 2",
+        "type": "Apartment",
+        "address": "456 Elm St, Springfield",
+        "path": "/b.jpg"
+    },
+    {
+        "title": "Property 3",
+        "type": "Condo",
+        "address": "789 Oak St, Springfield",
+        "path": "/c.jpg"
+    },
+    {
+        "title": "Property 4",
+        "type": "Townhouse",
+        "address": "101 Pine St, Springfield",
+        "path": "/d.jpg"
+    },
+    {
+        "title": "Property 5",
+        "type": "Villa",
+        "address": "202 Maple St, Springfield",
+        "path": "/e.jpg"
+    }
+]
